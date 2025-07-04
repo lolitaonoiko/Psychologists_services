@@ -36,7 +36,7 @@ const BurgerMenu = () => {
     return (
         <>
             <div>
-                <RxHamburgerMenu size={24} onClick={handleOnClick} />
+                <RxHamburgerMenu size={24} onClick={handleOnClick} className={s.burger} />
             </div>
             {isOpen && (
                 <div className={clsx(s.backdrop, isClosing && s.backdropClosing)} onClick={handleBackdropClick}>

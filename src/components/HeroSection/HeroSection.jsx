@@ -3,7 +3,7 @@ import s from './HeroSection.module.css';
 const HeroSection = () => {
     return (
         <>
-            <div className={s.hero}></div>
+            <div className={s.heroBack}></div>
             <div className={s.heroBox}>
                 <div className={s.articleBox}>
                     <h1 className={s.title}>
@@ -11,8 +11,8 @@ const HeroSection = () => {
                     </h1>
                     <p className={s.text}>We help you to reveal your potential, overcome challenges and find a guide in your own life with the help of our experienced psychologists.</p>
                     <button className={s.btn}>
-                        <span>Get started</span>
-                        <svg className={s.arrow}>
+                        <span className={s.btnText}>Get started</span>
+                        <svg className={s.arrowIcon}>
                             <use href="/public/icons/sprite.svg#icon-arrow"></use>
                         </svg>
                     </button>

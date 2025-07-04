@@ -1,18 +1,25 @@
 .wrapper {
     max-width: 320px;
+    min-height: calc(100vh - 76px);
     margin: 0 auto;
     padding-top: 14px;
     padding-left: 8px;
     padding-right: 8px;
+    padding-bottom: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 @media only screen and (min-width: 768px) {
+    .wrapper {
+        max-width: 768px;
+        padding-top: 0;
+    }
 }
 @media only screen and (min-width: 1440px) {
     .wrapper {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding-top: 14px;
-        padding-left: 8px;
-        padding-right: 8px;
+        max-width: 1224px;
+        padding-left: 20px;
+        padding-right: 20px;
     }
 }
