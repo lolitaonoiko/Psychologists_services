@@ -1,0 +1,14 @@
+.loader {
+    display: flex;
+    justify-content: center;
+    padding-top: 10px;
+}
+@media only screen and (min-width: 768px) {
+}
+@media only screen and (min-width: 1440px) {
+    .loader {
+        display: flex;
+        justify-content: center;
+        padding-top: 40px;
+    }
+}

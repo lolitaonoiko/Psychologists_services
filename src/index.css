@@ -36,6 +36,9 @@ a {
     text-decoration: inherit;
     display: block;
 }
+a:visited {
+    color: var(--black);
+}
 
 h1,
 h2,

@@ -1,24 +1,29 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, updateProfile } from 'firebase/auth';
-import { auth } from '../../api/firebase';
+
+import { createAsyncThunk } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
+
+import { auth } from '../../api/firebase';
 
 export const registerThunk = createAsyncThunk('auth/register', async (credentials, thunkAPI) => {
     try {
         const data = await createUserWithEmailAndPassword(auth, credentials.email, credentials.password);
 
+        if (credentials.displayName) {
+            await updateProfile(data.user, {
+                displayName: credentials.displayName,
+                photoURL: credentials.photoURL || null,
+            });
+        }
         const user = {
             uid: data.user.uid,
-            name: data.user.displayName,
+            name: data.user.displayName || credentials.displayName || null,
             email: data.user.email,
-            photoURL: data.user.photoURL,
+            photoURL: data.user.photoURL || credentials.photoURL || null,
             phoneNumber: data.user.phoneNumber,
         };
 
-        await updateProfile(data.user, {
-            displayName: data.user.displayName,
-            photoURL: data.user.photoURL || null,
-        });
+        toast.success('Registration successful!');
 
         return user;
     } catch (error) {
@@ -26,7 +31,7 @@ export const registerThunk = createAsyncThunk('auth/register', async (credential
 
         switch (error.code) {
             case 'auth/email-already-in-use':
-                errorMessage = 'This email already in use';
+                errorMessage = 'This email is already in use';
                 break;
             case 'auth/weak-password':
                 errorMessage = 'Weak password';
@@ -44,6 +49,7 @@ export const registerThunk = createAsyncThunk('auth/register', async (credential
 export const loginThunk = createAsyncThunk('auth/login', async (credentials, thunkAPI) => {
     try {
         const data = await signInWithEmailAndPassword(auth, credentials.email, credentials.password);
+
         const user = {
             uid: data.user.uid,
             name: data.user.displayName,
@@ -52,10 +58,7 @@ export const loginThunk = createAsyncThunk('auth/login', async (credentials, thu
             phoneNumber: data.user.phoneNumber,
         };
 
-        await updateProfile(data.user, {
-            displayName: data.user.displayName,
-            photoURL: data.user.photoURL || null,
-        });
+        toast.success('Login successful!');
 
         return user;
     } catch (error) {
@@ -64,6 +67,7 @@ export const loginThunk = createAsyncThunk('auth/login', async (credentials, thu
         switch (error.code) {
             case 'auth/wrong-password':
             case 'auth/invalid-email':
+            case 'auth/invalid-credential':
                 errorMessage = 'Invalid email or password';
                 break;
             case 'auth/user-not-found':
@@ -75,7 +79,9 @@ export const loginThunk = createAsyncThunk('auth/login', async (credentials, thu
             default:
                 errorMessage = error.message;
         }
+
         toast.error(errorMessage);
+
         return thunkAPI.rejectWithValue(errorMessage);
     }
 });
@@ -83,9 +89,11 @@ export const loginThunk = createAsyncThunk('auth/login', async (credentials, thu
 export const logoutThunk = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
     try {
         await signOut(auth);
+
         toast.success('You have successfully logged out');
     } catch (error) {
         toast.error('Logout error');
+
         return thunkAPI.rejectWithValue(error.message);
     }
 });

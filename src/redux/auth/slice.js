@@ -1,22 +1,17 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
+
 import { loginThunk, logoutThunk, registerThunk } from './operations';
 
 const initialState = {
-    user: [],
+    user: null,
     isLoading: false,
-
-    isError: null,
+    isLoggedIn: false,
 };
 
 const handlePending = state => {
     state.isLoading = true;
-    state.isError = null;
 };
 
-const handleError = (state, action) => {
-    state.isLoading = false;
-    state.isError = action.payload;
-};
 const slice = createSlice({
     name: 'auth',
     initialState,
@@ -24,20 +19,29 @@ const slice = createSlice({
         builder
             .addCase(registerThunk.fulfilled, (state, action) => {
                 state.isLoading = false;
-                state.isError = null;
-                console.log(action.payload);
-
                 state.user = action.payload;
+                state.isLoggedIn = true;
             })
             .addCase(loginThunk.fulfilled, (state, action) => {
                 state.isLoading = false;
-                state.isError = null;
-                console.log(action.payload);
-
                 state.user = action.payload;
+                state.isLoggedIn = true;
             })
-            .addMatcher(isAnyOf(registerThunk.pending, logoutThunk.pending, logoutThunk.pending, handlePending))
-            .addMatcher(isAnyOf(registerThunk.rejected, loginThunk.rejected, logoutThunk.rejected), handleError);
+            .addCase(logoutThunk.fulfilled, state => {
+                state.user = null;
+                state.isLoading = false;
+                state.isLoggedIn = false;
+            })
+            .addCase(registerThunk.rejected, state => {
+                state.isLoading = false;
+            })
+            .addCase(loginThunk.rejected, state => {
+                state.isLoading = false;
+            })
+            .addCase(logoutThunk.rejected, state => {
+                state.isLoading = false;
+            })
+            .addMatcher(isAnyOf(registerThunk.pending, logoutThunk.pending, loginThunk.pending), handlePending);
     },
 });
 

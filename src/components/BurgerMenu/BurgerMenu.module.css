@@ -1,0 +1,104 @@
+.backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 253, 253, 0.5);
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    z-index: 1000;
+    animation: backdropFadeIn 0.3s ease-out;
+
+    backface-visibility: hidden;
+    transform: translateZ(0);
+}
+
+.backdropClosing {
+    animation: backdropFadeOut 0.3s ease-out;
+
+    animation-fill-mode: forwards;
+}
+
+.modal {
+    background-color: white;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 500px;
+    height: 100%;
+    overflow-y: auto;
+    position: relative;
+
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    animation: modalSlideIn 0.3s ease-out;
+
+    backface-visibility: hidden;
+    transform: translateZ(0);
+}
+
+.modalClosing {
+    animation: modalSlideOut 0.3s ease-out;
+
+    animation-fill-mode: forwards;
+}
+
+.modalHeader {
+    display: flex;
+    justify-content: flex-end;
+    padding: 16px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.closeButton {
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.closeButton:hover {
+    transform: scale(1.1);
+}
+
+.modalContent {
+    padding: 20px;
+}
+
+@keyframes backdropFadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes modalSlideIn {
+    from {
+        transform: translateY(-30px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes backdropFadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes modalSlideOut {
+    from {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateY(-30px);
+        opacity: 0;
+    }
+}
