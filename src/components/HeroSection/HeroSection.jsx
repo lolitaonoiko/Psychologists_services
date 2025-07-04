@@ -13,30 +13,30 @@ const HeroSection = () => {
                     <button className={s.btn}>
                         <span className={s.btnText}>Get started</span>
                         <svg className={s.arrowIcon}>
-                            <use href="/public/icons/sprite.svg#icon-arrow"></use>
+                            <use href="/icons/sprite.svg#icon-arrow"></use>
                         </svg>
                     </button>
                 </div>
                 <div className={s.imgBox}>
                     <picture>
-                        <source srcSet="/public/images/hero-image@2x.png 2x, /public/images/hero-image.png 1x" />
+                        <source srcSet="/images/hero-image@2x.png 2x, /images/hero-image.png 1x" />
 
-                        <img className={s.img} src="/public/images/hero-image.png" alt="Photo of the psychologist" />
+                        <img className={s.img} src="/images/hero-image.png" alt="Photo of the psychologist" />
                     </picture>
                     <span className={s.questionBack}>
                         <svg className={s.questionIcon} width="10" height="17">
-                            <use href="/public/icons/sprite.svg#icon-question"></use>
+                            <use href="/icons/sprite.svg#icon-question"></use>
                         </svg>
                     </span>
                     <span className={s.usersBack}>
                         <svg className={s.usersIcon} width="25" height="25">
-                            <use href="/public/icons/sprite.svg#icon-users"></use>
+                            <use href="/icons/sprite.svg#icon-users"></use>
                         </svg>
                     </span>
                     <div className={s.decortnBox}>
                         <span className={s.decorCheck}>
                             <svg className={s.checkIcon} width="20" height="16">
-                                <use href="/public/icons/sprite.svg#icon-check"></use>
+                                <use href="/icons/sprite.svg#icon-check"></use>
                             </svg>
                         </span>
                         <p className={s.decorText}>Experienced psychologists</p>
