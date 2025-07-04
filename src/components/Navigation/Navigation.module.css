@@ -26,3 +26,13 @@
     opacity: 1;
     transform: translateX(-50%) scale(1);
 }
+@media only screen and (min-width: 768px) {
+    .navList {
+        gap: 8px;
+    }
+}
+@media only screen and (min-width: 1440px) {
+    .navList {
+        gap: 40px;
+    }
+}

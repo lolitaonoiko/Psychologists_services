@@ -15,7 +15,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 30px;
+    gap: 8px;
     /* min-height: 100%; */
 }
 .articleBox {
@@ -24,7 +24,7 @@
     justify-content: center;
     align-items: center;
     margin-bottom: 10px;
-    gap: 20px;
+    gap: 8px;
 }
 .arrowIcon {
     fill: var(--white);
@@ -60,6 +60,7 @@
     align-items: center;
     gap: 5px;
 }
+
 .btnText {
     font-size: 15px;
     line-height: 1.2;
@@ -176,6 +177,10 @@
     .arrowIcon {
         width: 17px;
         height: 17px;
+        transition: transform 0.3s ease;
+    }
+    .arrowIcon:hover {
+        transform: rotate(10deg);
     }
     .title {
         font-size: 50px;
@@ -196,6 +201,12 @@
         height: 60px;
 
         gap: 18px;
+    }
+    .btn:hover {
+        background-color: var(--dark-orange);
+    }
+    .btn:hover .arrowIcon {
+        transform: rotate(50deg);
     }
     .btnText {
         font-size: 20px;

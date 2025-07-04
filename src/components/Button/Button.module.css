@@ -1,0 +1,43 @@
+.button {
+    font-family: 'Inter', sans-serif;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    border-radius: 30px;
+    padding: 14px 40px;
+    height: 48px;
+
+    font-size: 16px;
+
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    color: var(--white);
+}
+
+.outline {
+    border: 1px solid rgba(25, 26, 21, 0.2);
+    background-color: transparent;
+    color: var(--black);
+}
+.outline:hover {
+    border-color: rgba(25, 26, 21, 0.688);
+}
+.basic {
+    background-color: var(--orange);
+}
+.basic:hover {
+    background-color: var(--dark-orange);
+}
+.medium {
+    width: 171px;
+}
+.small {
+    width: 124px;
+}
+.hero {
+    width: 135px;
+    height: 40px;
+}

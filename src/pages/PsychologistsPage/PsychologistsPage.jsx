@@ -1,5 +1,5 @@
 const PsychologistsPage = () => {
-    return <div>PsychologistsPage</div>;
+    return <div>f</div>;
 };
 
 export default PsychologistsPage;

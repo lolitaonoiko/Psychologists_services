@@ -11,9 +11,14 @@
     align-items: center;
     padding: 0 10px;
 }
+
 @media only screen and (min-width: 768px) {
     .headerContent {
         max-width: 768px;
+    }
+    .btnBox {
+        display: flex;
+        gap: 8px;
     }
 }
 @media only screen and (min-width: 1440px) {

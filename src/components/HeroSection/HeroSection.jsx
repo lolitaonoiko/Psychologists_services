@@ -1,6 +1,13 @@
+import { useNavigate } from 'react-router-dom';
+
 import s from './HeroSection.module.css';
 
 const HeroSection = () => {
+    const navigate = useNavigate();
+
+    const handleOnCLick = () => {
+        navigate('/psychologists');
+    };
     return (
         <>
             <div className={s.heroBack}></div>
@@ -10,7 +17,7 @@ const HeroSection = () => {
                         The road to the <span className={s.word}>depths</span> of the human soul
                     </h1>
                     <p className={s.text}>We help you to reveal your potential, overcome challenges and find a guide in your own life with the help of our experienced psychologists.</p>
-                    <button className={s.btn}>
+                    <button className={s.btn} onClick={handleOnCLick}>
                         <span className={s.btnText}>Get started</span>
                         <svg className={s.arrowIcon}>
                             <use href="/icons/sprite.svg#icon-arrow"></use>
