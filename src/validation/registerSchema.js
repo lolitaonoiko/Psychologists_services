@@ -1,6 +1,7 @@
 import * as yup from 'yup';
 
-export const loginValidationSchema = yup.object().shape({
+export const registerValidationSchema = yup.object().shape({
+    name: yup.string().required('Name is required').min(2, 'Name must be at least 2 characters').max(40, 'Too long'),
     email: yup
         .string()
         .email('Email must be in the format: example@domain.com')

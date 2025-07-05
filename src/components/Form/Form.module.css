@@ -1,0 +1,91 @@
+.title {
+    font-weight: 500;
+    font-size: 30px;
+
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    color: var(--black);
+    text-align: start;
+    margin-bottom: 20px;
+}
+.btnSpan {
+    margin: 0 auto;
+}
+.descr {
+    font-weight: 400;
+    font-size: 16px;
+
+    line-height: 1.25;
+    color: rgba(25, 26, 21, 0.5);
+
+    text-align: start;
+    margin-bottom: 40px;
+}
+.inpt {
+    border: 1px solid rgba(25, 26, 21, 0.1);
+    border-radius: 12px;
+    padding: 16px;
+    width: 100%;
+    height: 52px;
+    color: rgba(25, 26, 21, 0.5);
+    font-size: 16px;
+}
+.email {
+    padding-left: 64px;
+}
+.pass {
+    padding-left: 94px;
+}
+.name {
+    padding-left: 66px;
+}
+.list {
+    margin-bottom: 40px;
+}
+.listItem {
+    position: relative;
+    margin-bottom: 18px;
+}
+.span {
+    position: absolute;
+    top: 16px;
+    left: 18px;
+}
+.errorMessage {
+    color: var(--dark-orange);
+    font-size: 8px;
+    position: absolute;
+    bottom: -12px;
+    left: 4px;
+}
+.iconEye {
+    position: absolute;
+    right: 18px;
+    top: 16px;
+    padding: 0;
+}
+@media only screen and (min-width: 768px) {
+    .title {
+        font-weight: 500;
+        font-size: 40px;
+
+        /* line-height: 48px; */
+        line-height: 1.2;
+        letter-spacing: -0.02em;
+        color: #191a15;
+    }
+    .descr {
+        font-weight: 400;
+        font-size: 16px;
+
+        line-height: 1.25;
+        color: rgba(25, 26, 21, 0.5);
+    }
+    .inpt {
+        border: 1px solid rgba(25, 26, 21, 0.1);
+        border-radius: 12px;
+
+        width: 438px;
+        height: 52px;
+    }
+}

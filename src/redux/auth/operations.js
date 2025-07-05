@@ -9,21 +9,23 @@ export const registerThunk = createAsyncThunk('auth/register', async (credential
     try {
         const data = await createUserWithEmailAndPassword(auth, credentials.email, credentials.password);
 
-        if (credentials.displayName) {
+        if (credentials.name) {
             await updateProfile(data.user, {
-                displayName: credentials.displayName,
-                photoURL: credentials.photoURL || null,
+                displayName: credentials.name,
+                // photoURL: credentials.photoURL || null,
             });
         }
+
         const user = {
             uid: data.user.uid,
-            name: data.user.displayName || credentials.displayName || null,
+            name: data.user.displayName || credentials.name || null,
             email: data.user.email,
-            photoURL: data.user.photoURL || credentials.photoURL || null,
-            phoneNumber: data.user.phoneNumber,
+            // photoURL: data.user.photoURL || credentials.photoURL || null,
+            // phoneNumber: data.user.phoneNumber,
         };
 
         toast.success('Registration successful!');
+        console.log(user);
 
         return user;
     } catch (error) {
@@ -59,6 +61,7 @@ export const loginThunk = createAsyncThunk('auth/login', async (credentials, thu
         };
 
         toast.success('Login successful!');
+        console.log(user);
 
         return user;
     } catch (error) {

@@ -37,7 +37,32 @@
 .small {
     width: 124px;
 }
+.long {
+    width: 100%;
+}
+.logout {
+    width: 135px;
+    border: 1px solid rgba(25, 26, 21, 0.2);
+    color: var(--black);
+}
+.logout:hover {
+    border-color: rgba(25, 26, 21, 0.688);
+}
 .hero {
     width: 135px;
     height: 40px;
+}
+.disabled {
+    background-color: rgba(25, 26, 21, 0.2);
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+.disabled:hover {
+    background-color: rgba(25, 26, 21, 0.376);
+}
+@media only screen and (min-width: 768px) {
+    .long {
+        width: 438px;
+        height: 52px;
+    }
 }

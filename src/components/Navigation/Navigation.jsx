@@ -5,27 +5,30 @@ import useMedia from '../../hooks/useMedia';
 import { useSelector } from 'react-redux';
 import { selectIsLoggedIn } from '../../redux/auth/selectors';
 
-const Navigation = ({ onNavigate }) => {
-    const { isMobile, isTablet } = useMedia();
+const Navigation = ({ onNavigate, burger = false }) => {
+    const { isMobile } = useMedia();
     const isLoggedIn = useSelector(selectIsLoggedIn);
 
-    const buildMobWrapperClass = isMobile => {
+    const buildMobWrapperClasses = isMobile => {
         return clsx(isMobile && s.mobWrapper);
+    };
+
+    const buildNavListClasses = () => {
+        return clsx(s.navList, burger && s.burger);
     };
 
     const classNavLink = ({ isActive }) => clsx(s.navLink, isActive && s.active);
 
     const handleNavClick = () => {
-        // Викликаємо callback для закриття модалки при навігації
         if (onNavigate) {
             onNavigate();
         }
     };
 
     return (
-        <div className={buildMobWrapperClass(isMobile)}>
+        <div className={buildMobWrapperClasses(isMobile)}>
             <nav>
-                <ul className={s.navList}>
+                <ul className={buildNavListClasses()}>
                     <li>
                         <NavLink className={classNavLink} to="/" onClick={handleNavClick}>
                             Home

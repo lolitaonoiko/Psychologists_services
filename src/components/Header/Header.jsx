@@ -1,24 +1,35 @@
-import { lazy, useState } from 'react';
+import { lazy } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
 import useMedia from '../../hooks/useMedia';
+import { selectIsLoggedIn, selectLoginModal, selectRegisterModal } from '../../redux/auth/selectors';
 
 import s from './Header.module.css';
+import { closeFormModal, openFormModal } from '../../redux/auth/slice';
+import { logoutThunk } from '../../redux/auth/operations';
 
 const Navigation = lazy(() => import('../Navigation/Navigation'));
 const Logo = lazy(() => import('../Logo/Logo'));
 const BurgerMenu = lazy(() => import('../BurgerMenu/BurgerMenu'));
-const LoginButton = lazy(() => import('../LoginButton/LoginButton'));
-const RegistrationButton = lazy(() => import('../RegistrationButton/RegistrationButton'));
+// const LoginButton = lazy(() => import('../LoginButton/LoginButton'));
+const FormButton = lazy(() => import('../FormButton/FormButton'));
+// const RegistrationButton = lazy(() => import('../RegistrationButton/RegistrationButton'));
+const Form = lazy(() => import('../Form/Form'));
 
 const Header = () => {
     const { isMobile, isTablet } = useMedia();
-    const [isLoginModal, setIsLoginModal] = useState(false);
-    const [isRegisterModal, setIsRegisterModal] = useState(false);
+    const dispatch = useDispatch();
+    const isLoginOpen = useSelector(selectLoginModal);
+    const isRegisterOpen = useSelector(selectRegisterModal);
+    const isLoggedIn = useSelector(selectIsLoggedIn);
 
-    const loginOnClick = () => {
-        setIsLoginModal(true);
+    const handleOnClickLogInModal = e => {
+        dispatch(openFormModal(e.target.innerText));
     };
-    const registerOnClick = () => {
-        setIsRegisterModal(true);
+
+    const handleOnClickLogOut = () => {
+        dispatch(closeFormModal());
+        dispatch(logoutThunk());
     };
 
     return (
@@ -29,14 +40,24 @@ const Header = () => {
                     <>
                         <Navigation />
                         <div className={s.btnBox}>
-                            <LoginButton variant={'outline'} size={'small'} onClick={loginOnClick}>
-                                Login
-                            </LoginButton>
-                            <RegistrationButton onClick={registerOnClick}>Registration</RegistrationButton>
+                            {!isLoggedIn && (
+                                <>
+                                    <FormButton variant={'outline'} size={'small'} onClick={e => handleOnClickLogInModal(e)}>
+                                        Login
+                                    </FormButton>
+                                    <FormButton onClick={e => handleOnClickLogInModal(e)}>Registration</FormButton>
+                                </>
+                            )}
+                            {isLoggedIn && (
+                                <FormButton onClick={handleOnClickLogOut} variant={'logout'}>
+                                    Log out
+                                </FormButton>
+                            )}
                         </div>
                     </>
                 )}
-
+                {isLoginOpen && <Form>Log In</Form>}
+                {isRegisterOpen && <Form>Registration</Form>}
                 {isMobile && <BurgerMenu />}
             </div>
         </header>
