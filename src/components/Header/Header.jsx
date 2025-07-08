@@ -1,8 +1,9 @@
 import { lazy } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { BiSolidUser } from 'react-icons/bi';
 
 import useMedia from '../../hooks/useMedia';
-import { selectIsLoggedIn, selectLoginModal, selectRegisterModal } from '../../redux/auth/selectors';
+import { selectIsLoggedIn, selectLoginModal, selectRegisterModal, selectUser } from '../../redux/auth/selectors';
 
 import s from './Header.module.css';
 import { closeFormModal, openFormModal } from '../../redux/auth/slice';
@@ -22,6 +23,7 @@ const Header = () => {
     const isLoginOpen = useSelector(selectLoginModal);
     const isRegisterOpen = useSelector(selectRegisterModal);
     const isLoggedIn = useSelector(selectIsLoggedIn);
+    const user = useSelector(selectUser);
 
     const handleOnClickLogInModal = e => {
         dispatch(openFormModal(e.target.innerText));
@@ -49,9 +51,15 @@ const Header = () => {
                                 </>
                             )}
                             {isLoggedIn && (
-                                <FormButton onClick={handleOnClickLogOut} variant={'logout'}>
-                                    Log out
-                                </FormButton>
+                                <>
+                                    <span className={s.userIconBack}>
+                                        <BiSolidUser className={s.userIcon} size={'20'} />
+                                    </span>
+                                    <p>{user.name}</p>
+                                    <FormButton onClick={handleOnClickLogOut} variant={'logout'}>
+                                        Log out
+                                    </FormButton>
+                                </>
                             )}
                         </div>
                     </>

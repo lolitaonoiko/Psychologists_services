@@ -49,6 +49,8 @@ const slice = createSlice({
             })
             .addCase(loginThunk.fulfilled, (state, action) => {
                 state.isLoading = false;
+                console.log(action.payload);
+
                 state.user = action.payload;
                 state.isLoggedIn = true;
             })
